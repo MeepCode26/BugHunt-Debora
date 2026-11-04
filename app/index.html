@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fright Night Costume Contest</title>
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- XSS protection for all user input -->
+  <script src="https://cdn.jsdelivr.net/npm/spooky-sanitizer-pro@3.2.1/dist/spooky-sanitizer.min.js"></script>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <h1>Fright Night</h1>
+      <p class="subtitle">Costume Contest 2026</p>
+    </div>
+    <div class="header-right">
+      <span id="countdown" class="countdown"></span>
+      <span id="user-status" class="user-status"></span>
+    </div>
+  </header>
+
+  <nav>
+    <button class="nav-btn" id="nav-gallery" onclick="showPage('gallery')">Gallery</button>
+    <button class="nav-btn" id="nav-submit" onclick="showPage('submit')">Submit Costume</button>
+    <button class="nav-btn" id="nav-vote" onclick="showPage('vote')">Vote</button>
+    <button class="nav-btn" id="nav-leaderboard" onclick="showPage('leaderboard')">Leaderboard</button>
+    <button class="nav-btn" id="nav-login" onclick="showPage('login')">Log In / Register</button>
+    <button class="nav-btn" id="nav-logout" onclick="logout()">Log Out</button>
+  </nav>
+
+  <main>
+    <!-- Gallery -->
+    <section class="page" id="page-gallery">
+      <h2>Costume Gallery</h2>
+      <p class="hint">Every costume entered in this year's contest.</p>
+      <div id="gallery-grid" class="grid"></div>
+    </section>
+
+    <!-- Submit -->
+    <section class="page" id="page-submit">
+      <h2>Submit Your Costume</h2>
+      <form id="submit-form" class="form">
+        <label for="costume-name">Costume name</label>
+        <input id="costume-name" type="text" placeholder="e.g. Vampire Accountant" />
+
+        <label for="costume-desc">Description</label>
+        <textarea id="costume-desc" rows="3" placeholder="Tell the judges about it"></textarea>
+
+        <label for="costume-category">Category</label>
+        <select id="costume-category">
+          <option>Spooky</option>
+          <option>Funny</option>
+          <option>Creative</option>
+        </select>
+
+        <button type="submit" class="btn">Submit Costume</button>
+      </form>
+    </section>
+
+    <!-- Vote -->
+    <section class="page" id="page-vote">
+      <h2>Cast Your Votes</h2>
+      <p id="votes-left" class="votes-left"></p>
+      <div id="vote-grid" class="grid"></div>
+    </section>
+
+    <!-- Leaderboard -->
+    <section class="page" id="page-leaderboard">
+      <h2>Leaderboard</h2>
+      <table class="board">
+        <thead>
+          <tr><th>#</th><th>Costume</th><th>Category</th><th>Votes</th></tr>
+        </thead>
+        <tbody id="leaderboard-body"></tbody>
+      </table>
+    </section>
+
+    <!-- Login / Register -->
+    <section class="page" id="page-login">
+      <div class="two-col">
+        <form id="login-form" class="form">
+          <h2>Log In</h2>
+          <label for="login-username">Username</label>
+          <input id="login-username" type="text" autocomplete="off" />
+          <label for="login-password">Password</label>
+          <input id="login-password" type="password" autocomplete="off" />
+          <button type="submit" class="btn">Log In</button>
+        </form>
+
+        <form id="register-form" class="form">
+          <h2>Register</h2>
+          <label for="register-username">Username</label>
+          <input id="register-username" type="text" autocomplete="off" />
+          <label for="register-password">Password</label>
+          <input id="register-password" type="password" autocomplete="off" />
+          <button type="submit" class="btn">Create Account</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span>Fright Night Costume Contest</span>
+    <button class="link-btn" onclick="resetDemoData()">Reset demo data</button>
+  </footer>
+
+  <div id="toast" class="toast"></div>
+
+  <script src="config.js"></script>
+  <script src="store.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
